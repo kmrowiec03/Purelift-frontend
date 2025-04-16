@@ -36,11 +36,11 @@ const TrainingPlans = () => {
                             alt={`Image for ${plan.title}`}
                             loading="lazy"
                         />
-                        <p className="title_in_window">{plan.title}</p>
-                        <p className="text_in_window">
+                        <p className=" text title_in_window">{plan.title}</p>
+                        <p className="text text_in_window">
                             {
                                 plan.description
-                                    ? plan.description.split(" ").slice(0, 10).join(" ") + "..."
+                                    ? plan.description.split(" ").slice(0, 3).join(" ") + "..."
                                     : "No description available"
                             }
                         </p>

@@ -1,0 +1,15 @@
+.text{
+    font-family: 'Inter', sans-serif;
+}
+
+.title_in_window{
+    color:black;
+    font-size: 2em;
+}
+
+
+.text_in_window{
+    color:black;
+    font-size: 1em;
+
+}
