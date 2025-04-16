@@ -32,17 +32,12 @@ const TrainingPlans = () => {
                         key={plan.id}
                     >
                         <img
-                            src="public/images/tlo.jpg"
+                            src="/src/assets/tlo.jpg"
                             alt={`Image for ${plan.title}`}
                             loading="lazy"
                         />
                         <p className=" text title_in_window">{plan.title}</p>
                         <p className="text text_in_window">
-                            {
-                                plan.description
-                                    ? plan.description.split(" ").slice(0, 3).join(" ") + "..."
-                                    : "No description available"
-                            }
                         </p>
                     </a>
                 ))

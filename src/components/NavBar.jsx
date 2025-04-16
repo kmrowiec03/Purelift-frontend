@@ -1,13 +1,20 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import "/src/style/navigation.css"
 const NavBar = () => {
     return (
-        <nav style={{position: 'fixed', top: '0', left: '0', right: '0',backgroundColor:"red"}}>
-            <ul>
-                <li>
-                    <Link to="/trainingPlans">Training Plans</Link> {/* Link do strony z treningami */}
-                </li>
-            </ul>
+        <nav className="Navbar">
+            <div className="Toolbar_container_for_buttons Left-toolbar">
+                <Link to="/articles" className="Toolbar_button">Articles</Link>
+                <Link to="/trainingPlans" className="Toolbar_button">Training Plans</Link>
+            </div>
+
+            <Link to="/">
+                <img src="/src/assets/logo.png"  alt={"logo"} className="NavLogo"/>
+            </Link>
+
+            <div className="Toolbar_container_for_buttons Right-toolbar">
+            </div>
         </nav>
     );
 };

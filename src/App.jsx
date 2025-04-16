@@ -6,6 +6,7 @@ import NavBar from './components/NavBar'
 import "./style/App.css";
 import "./style/text.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ArticleList from "./components/ArticleList.jsx";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/trainingPlans" element={<TrainingPlans/>}/>
+                <Route path="/articles" element={<ArticleList/>}/>
             </Routes>
 
 
