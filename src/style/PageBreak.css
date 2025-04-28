@@ -1,0 +1,36 @@
+.main-content {
+    background-size: cover;
+    height:100%;
+    width: 100vw;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-direction: row;
+}
+
+.left-part{
+    width: 30%;
+    height: 100%;
+}
+
+.center-part{
+    width:40%;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.center-part p {
+    margin-top: 0;
+    position: static;
+}
+.right-part{
+
+    width: 30%;
+    height: 100%;
+
+}
