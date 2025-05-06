@@ -9,6 +9,7 @@ import "./style/App.css";
 import "./style/text.css"
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from "./components/Login.jsx";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/trainingPlans" element={<TrainingPlans/>}/>
                 <Route path="/articles" element={<ArticleList/>}/>
                 <Route path="/trainingPlans/:id" element={<TrainingPlanDetails />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
 
 

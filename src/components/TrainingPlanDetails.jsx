@@ -13,6 +13,7 @@ const TrainingPlanDetails = () => {
     useEffect(() => {
         axios.get(`http://localhost:8080/api/training/${id}`)
             .then(response => {
+                console.log(response.data);
                 setPlan(response.data);
                 setLoading(false);
             })
@@ -41,6 +42,15 @@ const TrainingPlanDetails = () => {
                         plan.trainingDays.map((day) => (
                             <div key={day.id} className="Container_for_window">
                                 <p className="text_in_window">Dzień treningowy ID: {day.id}</p>
+                                {day.exercises && day.exercises.length > 0 ? (
+                                    <ul>
+                                        {day.exercises.map((exercise) => (
+                                                <p>{exercise.exerciseName} - Serie: {exercise.sets} - Powtórzenia: {exercise.reps}</p>
+                                        ))}
+                                    </ul>
+
+
+                                ) : (<p>Brak cwiczen dla tego dnia</p>)}
                             </div>
                         ))
                     ) : (

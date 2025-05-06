@@ -11,8 +11,8 @@
 
 }
 .Container_for_window{
-  flex: 1 1 calc(25% - 1.5em);
-  max-width: calc(25% - 1.5em);
+  flex: 1 1 calc(30% - 1.5em);
+  max-width: calc(30% - 1.5em);
   height: auto;
   background-color: #fff;
   text-align: center;
