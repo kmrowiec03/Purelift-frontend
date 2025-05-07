@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
+
 
 const TrainingPlans = () => {
     const [plans, setPlans] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Pobieranie danych z API
-        axios.get("http://localhost:8080/api/training")
-            .then((response) => {
-                setPlans(response.data);
-                setLoading(false);
-            })
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+            return;
+        }
+
+        axios.get('http://localhost:8080/api/training', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(response => {
+            setPlans(response.data);
+            setLoading(false);
+        })
             .catch((error) => {
-                console.error("Błąd podczas pobierania planów:", error);
+                console.error("Błąd podczas pobierania planów:", error.response || error.message || error);
                 setLoading(false);
             });
     }, []);
@@ -26,20 +35,10 @@ const TrainingPlans = () => {
         <div className="Container_for_many_window">
             {plans.length > 0 ? (
                 plans.map((plan) => (
-                    <a
-                        href={`trainingPlans/${plan.id}`}
-                        className="Container_for_window link"
-                        key={plan.id}
-                    >
-                        <img
-                            src="/src/assets/tlo.jpg"
-                            alt={`Image for ${plan.title}`}
-                            loading="lazy"
-                        />
-                        <p className=" text title_in_window">{plan.title}</p>
-                        <p className="text text_in_window">
-                        </p>
-                    </a>
+                    <Link to={`trainingPlans/${plan.id}`} className="Container_for_window link" key={plan.id}>
+                        <img src="/src/assets/tlo.jpg" alt={`Image for ${plan.title}`} loading="lazy" />
+                        <p className="text title_in_window">{plan.title}</p>
+                    </Link>
                 ))
             ) : (
                 <p>No training plans found.</p>
