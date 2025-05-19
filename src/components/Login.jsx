@@ -1,56 +1,77 @@
-// src/components/Login.jsx
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
+import { useAuth } from '/src/components/AuthContext.jsx';
 import axios from 'axios';
+import "/src/style/RegisterLogin.css"
+import "/src/style/PageBreak.css";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const { login } = useAuth();
 
-    // Funkcja do logowania użytkownika
     const handleLogin = async (e) => {
-        e.preventDefault();
 
-        const response = await axios.post('http://localhost:8080/api/security/authenticate', {
-            email,
-            password
-        });
+        try {
+            e.preventDefault();
+            const response = await axios.post('http://localhost:8080/api/security/authenticate', {
+                email,
+                password
+            });
 
-        const { token } = response.data;
-        localStorage.setItem('jwt', token);
-        setMessage('Login successful!');
-
+            const { token } = response.data;
+            login(token);
+            navigate('/');
+        } catch (error) {
+            if (error.response && error.response.data?.error) {
+                setMessage(error.response.data.error);
+            } else {
+                setMessage("Błąd rejestracji.");
+            }
+        }
     };
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className="main-content">
+            <div className="Container_column">
+                <form onSubmit={handleLogin}>
+                    <div className="form-section">
+                        <input
+                            className="form-input"
+                            type="email"
+                            name="email"
+                            id="email"
+                            autoComplete="off"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <label className="input-label" htmlFor="email">
+                            <span className="label-name">Email</span>
+                        </label>
+                    </div>
 
-            {/* Form do logowania */}
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+                    <div className="form-section">
+                        <input
+                            className="form-input"
+                            type="password"
+                            name="password"
+                            id="password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <label className="input-label" htmlFor="password">
+                            <span className="label-name">Password</span>
+                        </label>
+                    </div>
 
-            {/* Wyświetlanie komunikatów */}
-            {message && <p>{message}</p>}
+                    <button type="submit" className="Confirm-button"> Zaloguj się</button>
+                </form>
+                {message && <p>{message}</p>}
+            </div>
         </div>
     );
 };

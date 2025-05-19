@@ -1,0 +1,149 @@
+
+.header-main-page{
+    background-color: #2d89ef;
+    color: white;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+.rectangle-container{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.rectangle-container h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.rectangle-container p {
+    text-align: center;
+}
+.header-main-page .subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.container-for-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #6399d5;
+    border: 2px solid #6399d5;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #246bb3;
+    border: 2px solid #246bb3;
+}
+
+.btn-secondary {
+    background-color: #a1c0e7;
+    color: white;
+    border: 2px solid #a1c0e7;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #2d89ef;
+    border: 2px solid #2d89ef;
+    color: white;
+}
+
+section {
+    padding: 50px 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.benefits-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.benefit-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+}
+
+.benefit-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.community {
+    background-color: #e1f3ff;
+    text-align: center;
+}
+
+.records {
+    background-color: #fff;
+    text-align: center;
+}
+
+.records-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.record {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #2d89ef;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .benefits-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .benefit-item {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .records-list {
+        flex-direction: column;
+        align-items: center;
+    }
+}
