@@ -1,5 +1,6 @@
 
 .header-main-page{
+    width: 100vw;
     background-color: #2d89ef;
     color: white;
     padding: 60px 0;
@@ -54,6 +55,7 @@
 .btn-primary:hover {
     background-color: #246bb3;
     border: 2px solid #246bb3;
+    color: white;
 }
 
 .btn-secondary {

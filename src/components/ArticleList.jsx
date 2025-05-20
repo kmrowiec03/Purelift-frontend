@@ -4,16 +4,32 @@ import "../style/ArticleList.css";
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/articles")
-            .then(res => {
-                setArticles(res.data);
-            })
-            .catch(err => {
-                console.error("Błąd podczas pobierania artykułów:", err);
-            });
+        const fetchArticles = async () => {
+            try {
+                const token = localStorage.getItem("jwt");
+                const response = await axios.get("http://localhost:8080/api/articles", {
+                    headers: token ? {
+                        Authorization: `Bearer ${token}`
+                    } : {}
+                });
+                setArticles(response.data);
+            } catch (err) {
+                console.error("Błąd podczas pobierania artykułów:", err.response || err.message);
+                setError("Nie udało się pobrać artykułów.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchArticles();
     }, []);
+
+    if (loading) return <p>Ładowanie artykułów...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <div className="articles-container">
