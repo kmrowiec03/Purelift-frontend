@@ -35,7 +35,7 @@ const TrainingPlans = () => {
         <div className="Container_for_many_window">
             {plans.length > 0 ? (
                 plans.map((plan) => (
-                    <Link to={`trainingPlans/${plan.id}`} className="Container_for_window link" key={plan.id}>
+                    <Link to={`${plan.id}`} className="Container_for_window link" key={plan.id}>
                         <img src="/src/assets/tlo.jpg" alt={`Image for ${plan.title}`} loading="lazy" />
                         <p className="text title_in_window">{plan.title}</p>
                     </Link>

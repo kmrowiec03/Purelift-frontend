@@ -3,63 +3,79 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "/src/style/TrainingPlanDetails.css";
 import "/src/style/App.css";
-import "/src/style/PageBreak.css"
 
 const TrainingPlanDetails = () => {
     const { id } = useParams();
     const [plan, setPlan] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [expandedDays, setExpandedDays] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/training/${id}`)
-            .then(response => {
-                console.log(response.data);
+        const token = localStorage.getItem("jwt");
+        if (!token) return;
+
+        axios
+            .get(`http://localhost:8080/api/training/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
                 setPlan(response.data);
                 setLoading(false);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error("Błąd podczas pobierania planu:", error);
                 setLoading(false);
             });
     }, [id]);
 
+    const toggleDay = (dayId) => {
+        setExpandedDays((prev) =>
+            prev.includes(dayId)
+                ? prev.filter((id) => id !== dayId)
+                : [...prev, dayId]
+        );
+    };
+
     if (loading) return <p>Ładowanie...</p>;
     if (!plan) return <p>Nie znaleziono planu.</p>;
 
     return (
-        <div className="main-content">
-            <div className="left-part" style={{ width: "10%", display: "flex", justifyContent: "flex-end" }}>
-                <Link id="back_button" to="/trainingPlans">
-                    <p>BACK</p>
-                </Link>
+        <div className="training-plan-details">
+            <div className="details-header">
+                <h2 className="plan-title">Plan treningowy: {plan.title}</h2>
             </div>
 
-            <div className="center-part" style={{ width: "80%" }}>
-                <h2 className="title_in_window">Plan: {plan.title}</h2>
+            <div className="training-days-horizontal">
+                {plan.trainingDays.length > 0 ? (
+                    plan.trainingDays.map((day) => (
+                        <div key={day.id} className="training-day-card-horizontal">
+                            <button className="day-toggle-btn" onClick={() => toggleDay(day.id)}>
+                                Day {day.id} {expandedDays.includes(day.id) ? "▲" : "▼"}
+                            </button>
 
-                <div className="Container_for_many_window">
-                    {plan.trainingDays.length > 0 ? (
-                        plan.trainingDays.map((day) => (
-                            <div key={day.id} className="Container_for_window">
-                                <p className="text_in_window">Dzień treningowy ID: {day.id}</p>
-                                {day.exercises && day.exercises.length > 0 ? (
-                                    <ul>
-                                        {day.exercises.map((exercise) => (
-                                                <p>{exercise.exerciseName} - Serie: {exercise.sets} - Powtórzenia: {exercise.reps}</p>
-                                        ))}
-                                    </ul>
-
-
-                                ) : (<p>Brak cwiczen dla tego dnia</p>)}
-                            </div>
-                        ))
-                    ) : (
-                        <p>Brak dni treningowych.</p>
-                    )}
-                </div>
+                            {expandedDays.includes(day.id) && (
+                                <div className="exercise-list-expanded">
+                                    {day.exercises && day.exercises.length > 0 ? (
+                                        <ul>
+                                            {day.exercises.map((exercise, index) => (
+                                                <p key={index}>
+                                                    {exercise.exerciseName} – Series: {exercise.sets}, Reps: {exercise.reps}, Weight: {exercise.weight}
+                                                </p>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p className="no-exercises">Brak ćwiczeń dla tego dnia.</p>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    ))
+                ) : (
+                    <p>Brak dni treningowych.</p>
+                )}
             </div>
-
-            <div className="right-part" style={{ width: "10%" }}></div>
         </div>
     );
 };
