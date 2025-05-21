@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
-import { useAuth } from '/src/components/AuthContext.jsx';
+import { useAuth } from './AuthContext';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import "/src/style/RegisterLogin.css"
+import "/src/style/RegisterLogin.css";
 import "/src/style/PageBreak.css";
 
 const Login = () => {
@@ -13,22 +13,20 @@ const Login = () => {
     const { login } = useAuth();
 
     const handleLogin = async (e) => {
-
+        e.preventDefault();
         try {
-            e.preventDefault();
-            const response = await axios.post('http://localhost:8080/api/security/authenticate', {
-                email,
-                password
-            });
-
-            const { token } = response.data;
-            login(token);
+            await axios.post(
+                'http://localhost:8080/api/security/authenticate',
+                { email, password },
+                { withCredentials: true } // Ważne!
+            );
+            login();
             navigate('/');
         } catch (error) {
-            if (error.response && error.response.data?.error) {
+            if (error.response?.data?.error) {
                 setMessage(error.response.data.error);
             } else {
-                setMessage("Błąd rejestracji.");
+                setMessage("Błąd logowania.");
             }
         }
     };
@@ -41,14 +39,11 @@ const Login = () => {
                         <input
                             className="form-input"
                             type="email"
-                            name="email"
-                            id="email"
-                            autoComplete="off"
-                            required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
-                        <label className="input-label" htmlFor="email">
+                        <label className="input-label">
                             <span className="label-name">Email</span>
                         </label>
                     </div>
@@ -57,18 +52,16 @@ const Login = () => {
                         <input
                             className="form-input"
                             type="password"
-                            name="password"
-                            id="password"
-                            required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
-                        <label className="input-label" htmlFor="password">
-                            <span className="label-name">Password</span>
+                        <label className="input-label">
+                            <span className="label-name">Hasło</span>
                         </label>
                     </div>
 
-                    <button type="submit" className="Confirm-button"> Zaloguj się</button>
+                    <button type="submit" className="Confirm-button">Zaloguj się</button>
                 </form>
                 {message && <p>{message}</p>}
             </div>

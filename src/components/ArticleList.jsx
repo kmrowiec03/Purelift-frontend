@@ -10,11 +10,8 @@ const ArticleList = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const token = localStorage.getItem("jwt");
                 const response = await axios.get("http://localhost:8080/api/articles", {
-                    headers: token ? {
-                        Authorization: `Bearer ${token}`
-                    } : {}
+                    withCredentials: true // <-- Użycie cookies
                 });
                 setArticles(response.data);
             } catch (err) {

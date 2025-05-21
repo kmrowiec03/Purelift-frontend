@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "/src/style/TrainingPlanDetails.css";
 import "/src/style/App.css";
@@ -11,14 +11,9 @@ const TrainingPlanDetails = () => {
     const [expandedDays, setExpandedDays] = useState([]);
 
     useEffect(() => {
-        const token = localStorage.getItem("jwt");
-        if (!token) return;
-
         axios
             .get(`http://localhost:8080/api/training/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                withCredentials: true // <-- Użycie cookies
             })
             .then((response) => {
                 setPlan(response.data);

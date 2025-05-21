@@ -1,11 +1,10 @@
 import React from "react";
-import {Link} from 'react-router-dom';
-import "/src/style/navigation.css"
-import {useAuth} from "./AuthContext.jsx";
+import { Link } from 'react-router-dom';
+import "/src/style/navigation.css";
+import { useAuth } from "./AuthContext.jsx";
+
 const NavBar = () => {
     const { isLoggedIn, logout } = useAuth();
-
-
 
     return (
         <nav className="Navbar">
@@ -17,7 +16,7 @@ const NavBar = () => {
             </div>
 
             <Link to="/">
-                <img src="/src/assets/logo.png"  alt={"logo"} className="NavLogo"/>
+                <img src="/src/assets/logo.png" alt="logo" className="NavLogo" />
             </Link>
 
             <div className="Toolbar_container_for_buttons Right-toolbar">
