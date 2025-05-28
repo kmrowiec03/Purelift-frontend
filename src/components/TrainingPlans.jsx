@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from '../api/axios';
 import { Link } from "react-router-dom";
 
 const TrainingPlans = () => {
@@ -7,8 +7,8 @@ const TrainingPlans = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/training', {
-            withCredentials: true // <- TO JEST KLUCZOWE
+        api.get('/training', {
+            withCredentials: true
         })
             .then(response => {
                 setPlans(response.data);

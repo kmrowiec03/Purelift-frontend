@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from '../api/axios';
 import "../style/ArticleList.css";
 
 const ArticleList = () => {
@@ -10,8 +10,8 @@ const ArticleList = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/articles", {
-                    withCredentials: true // <-- Użycie cookies
+                const response = await api.get("/articles", {
+                    withCredentials: true
                 });
                 setArticles(response.data);
             } catch (err) {

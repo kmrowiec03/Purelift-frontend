@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { api } from '../api/axios';
 import "/src/style/TrainingPlanDetails.css";
 import "/src/style/App.css";
 
@@ -11,8 +11,8 @@ const TrainingPlanDetails = () => {
     const [expandedDays, setExpandedDays] = useState([]);
 
     useEffect(() => {
-        axios
-            .get(`http://localhost:8080/api/training/${id}`, {
+        api
+            .get(`/training/${id}`, {
                 withCredentials: true // <-- Użycie cookies
             })
             .then((response) => {

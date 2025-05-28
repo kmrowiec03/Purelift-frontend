@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../actions/AuthContext.jsx';
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import {api, getCookie, parseJwt} from '../api/axios';
 import "/src/style/RegisterLogin.css";
 import "/src/style/PageBreak.css";
 
@@ -15,12 +15,18 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(
-                'http://localhost:8080/api/security/authenticate',
+            await api.post(
+                '/security/authenticate',
                 { email, password },
-                { withCredentials: true } // Ważne!
+                { withCredentials: true }
             );
             login();
+            const token = getCookie('accessToken');
+            const payload = parseJwt(token);
+            if (!payload) {
+                return;
+            }
+
             navigate('/');
         } catch (error) {
             if (error.response?.data?.error) {
