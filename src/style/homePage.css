@@ -1,4 +1,6 @@
-
+body {
+    overflow-x: hidden;
+}
 .header-main-page{
     width: 100vw;
     background-color: #2d89ef;
@@ -11,7 +13,8 @@
 
 .rectangle-container{
     width: 100%;
-    padding: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;

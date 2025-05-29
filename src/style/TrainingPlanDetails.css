@@ -1,4 +1,6 @@
 .training-plan-details {
+    padding-top: 10vh;
+    height: 90vh;
     width: 100vw;
     font-family: 'Segoe UI', sans-serif;
 }
@@ -39,7 +41,6 @@
 
 .training-day-card-horizontal {
     width: 90%;
-    min-width: 220px;
     background-color: #f9f9f9;
     border-radius: 16px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -90,4 +91,61 @@
     color: #888;
     font-style: italic;
     font-size: 0.9rem;
+}
+.save-weight-btn {
+    background-color: #0056b3; /* zielony */
+    color: white;
+    padding: 6px 12px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-weight-btn:hover {
+    background-color: #45a049;
+}
+
+@media screen and (max-width: 1024px) {
+    .training-days-horizontal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .training-day-card-horizontal {
+        width: 85%;
+    }
+
+    .plan-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .training-day-card-horizontal {
+        width: 95%;
+        padding: 0.75rem;
+    }
+
+    .plan-title {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .day-toggle-btn {
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+
+    .save-weight-btn {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+
+    input[type="number"] {
+        width: 60px;
+        font-size: 0.9rem;
+    }
 }

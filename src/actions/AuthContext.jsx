@@ -1,12 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import {api, getCookie, parseJwt} from '../api/axios';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -72,6 +74,7 @@ export const AuthProvider = ({ children }) => {
             console.error("Logout error:", e);
         }
         setIsLoggedIn(false);
+        navigate('/');
     };
 
     if (loading) return <div>Loading...</div>;

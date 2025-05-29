@@ -1,28 +1,37 @@
-.NavLogo{
-    width:auto;
-    height: 60px;
-    background-color: inherit;
-}
-
 .Navbar {
-    width: 100% ;
+    width: 100%;
     height: 70px;
-
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    background:  white;
-    border-bottom: 1px black solid;
+    background: white;
+    border-bottom: 1px solid black;
     display: flex;
-    justify-content: flex-start;
-    align-items:center;
-    flex-direction: row;
-    z-index: 1000; /* priorytet wyswietlania*/
+    align-items: center;
+    z-index: 1000;
+    justify-content: space-between;
+;
 }
 
-.Toolbar_button{
-    display: inline-flex;
+.NavLogo {
+    height: 60px;
+}
+
+.NavLogoLink {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.Toolbar_container_for_buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.Toolbar_button {
     text-decoration: none;
     color: #333;
     padding: 10px 20px;
@@ -30,29 +39,66 @@
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
 }
+
 .Toolbar_button:hover {
     background-color: rgba(74, 74, 74, 0.1);
     color: #000;
 }
 
-.Toolbar_container_for_buttons{
-    height: 70px;
-    width:100%;
-    background-color: inherit;
-    text-align: center;
-    padding: 1em;
-    box-sizing: border-box;
-    color: white;
-    display: flex;
-    align-items: center ;
+/* Hamburger menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
 }
 
-.Left-toolbar{
-    justify-content: flex-start;
-
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
 }
 
-.Right-toolbar{
-    justify-content:flex-end;
+/* Mobile style */
+@media (max-width: 768px) {
+    .Toolbar_container_for_buttons {
+        display: none;
+    }
 
+    .hamburger {
+        display: flex;
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        display: none;
+        z-index: 999;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .mobile-menu.open {
+        display: flex;
+    }
+
+    .NavLogoLink {
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
+    }
+    .Navbar {
+        padding-left: 1rem;
+    }
+}
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none !important;
+    }
 }

@@ -8,15 +8,15 @@ import TrainingPlanDetails from "./components/TrainingPlanDetails.jsx";
 import "./style/App.css";
 import "./style/text.css"
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {  Routes, Route } from 'react-router-dom';
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
+import Profile from "./components/Profile.jsx";
 
 
 function App() {
     return (
-
-        <Router>
+        <>
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
             <NavBar/>
             <Routes>
@@ -26,10 +26,10 @@ function App() {
                 <Route path="/trainingPlans/:id" element={<TrainingPlanDetails />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
+        </>
 
-
-        </Router>
 
     )
 }

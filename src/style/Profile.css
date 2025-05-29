@@ -1,0 +1,107 @@
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    background-color: white;
+}
+
+.profile-container {
+    width: 40vw;
+    margin: 0 30vw;
+    padding: 2rem;
+    background-color: #a1c0e7;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-align: center;
+    border-bottom: 2px solid white;
+    padding-bottom: 0.5rem;
+}
+
+.profile-section {
+    background-color: #246bb3;
+    border: 2px solid #246bb3;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+.profile-section:last-child {
+    background-color: #2d89ef;
+    border: 2px solid #2d89ef;
+}
+
+.profile-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.profile-value {
+    margin-bottom: 0.75rem;
+}
+.admin-section {
+    margin-top: 2rem;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.user-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-list li {
+    margin-bottom: 0.5rem;
+}
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.user-table th {
+    background-color: #246bb3; /* ciemny niebieski */
+    color: white; /* biały tekst */
+}
+
+.user-table td {
+    color: #333; /* ciemny tekst dla czytelności na jasnym tle */
+}
+
+.user-table th {
+    background-color: #246bb3;
+    color: white;
+}
+
+.lock-button {
+    background-color: #2d89ef;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.lock-button:hover {
+    background-color: #1b5e9e;
+}
+
+@media (max-width: 768px) {
+
+
+    .profile-container {
+        width: 100vw;
+        margin: 0 0;
+    }
+}
