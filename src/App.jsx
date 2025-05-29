@@ -12,6 +12,7 @@ import {  Routes, Route } from 'react-router-dom';
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import Profile from "./components/Profile.jsx";
+import GeneratePlanForm from "./components/GeneratePlanForm.jsx";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/generatePlan" element={<GeneratePlanForm />} />
             </Routes>
         </>
 

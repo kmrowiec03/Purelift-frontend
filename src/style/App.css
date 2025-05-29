@@ -63,7 +63,28 @@
   object-fit: cover;
   object-position: top;
 }
-
+.button_to_generate_plan{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #2d89ef;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+.button_to_generate_plan:hover {
+  background-color: #1b5e9e;
+}
 /* 3 obiekty w rzędzie */
 @media (max-width: 1200px) {
   .Container_for_window {

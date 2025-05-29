@@ -23,18 +23,21 @@ const TrainingPlans = () => {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div className="Container_for_many_window">
-            {plans.length > 0 ? (
-                plans.map(plan => (
-                    <Link to={`${plan.id}`} className="Container_for_window link" key={plan.id}>
-                        <img src="/src/assets/tlo.jpg" alt={`Image for ${plan.title}`} loading="lazy" />
-                        <p className="text title_in_window">{plan.title}</p>
-                    </Link>
-                ))
-            ) : (
-                <p>No training plans found.</p>
-            )}
-        </div>
+        <>
+            <div className="Container_for_many_window">
+                {plans.length > 0 ? (
+                    plans.map(plan => (
+                        <Link to={`${plan.id}`} className="Container_for_window link" key={plan.id}>
+                            <img src="/src/assets/tlo.jpg" alt={`Image for ${plan.title}`} loading="lazy" />
+                            <p className="text title_in_window">{plan.title}</p>
+                        </Link>
+                    ))
+                ) : (
+                    <p>No training plans found.</p>
+                )}
+            </div>
+            <Link to="/generatePlan" className="button_to_generate_plan">+</Link>
+        </>
     );
 };
 
