@@ -1,0 +1,505 @@
+/* CreatePlanPage - Two column layout (30/70) */
+.create-plan-page {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 1.25rem;
+    padding: 1.5rem 1.75rem;
+    width: 100vw;
+    max-width: 100vw;
+    min-height: calc(100vh - 100px);
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+/* LEFT SIDE - 30% */
+.create-plan-left-full {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding-right: 0.75rem;
+}
+
+.create-plan-left-full > h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.create-plan-left-full .exercise-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+    /* Removed max-height and overflow to show all items */
+}
+
+.create-plan-left-full .exercise-card-tile {
+    padding: 0.7rem;
+    background-color: #246bb3;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.create-plan-left-full .exercise-card-tile:hover {
+    background-color: #2d89ef;
+    transform: translateY(-2px);
+}
+
+.create-plan-left-full .exercise-card-tile.active {
+    background-color: #fff;
+    color: #246bb3;
+    border-color: #246bb3;
+}
+
+.create-plan-left-full .pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.create-plan-left-full .pagination-btn {
+    padding: 0.4rem 0.8rem;
+    background-color: #2d89ef;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.create-plan-left-full .pagination-btn:hover:not(:disabled) {
+    background-color: #3d9fff;
+}
+
+.create-plan-left-full .pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.create-plan-left-full .pagination-info {
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.create-plan-left-full .exercise-details-section {
+    background-color: #ffffff;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #e6eef7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.exercise-name {
+    color: #246bb3;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem 0;
+}
+
+.exercise-desc {
+    color: #2c3e50;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    margin: 0 0 0.6rem 0;
+}
+
+.exercise-muscles-title {
+    color: #246bb3;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem 0;
+}
+
+.exercise-muscles-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.muscle-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #e6eef7;
+    border-radius: 999px;
+    background-color: #f6fbff;
+}
+
+.muscle-name {
+    color: #246bb3;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.muscle-intensity {
+    color: #2c3e50;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.exercise-no-data {
+    color: #7f8c8d;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.create-plan-left-full .days-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+    .days-list-container.right {
+        max-height: 240px;
+        padding-right: 0.5rem;
+    }
+
+.create-plan-left-full .day-item {
+    padding: 0.75rem 1rem;
+    background-color: #2d89ef;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.create-plan-left-full .day-item:hover {
+    background-color: #3d9fff;
+}
+
+.create-plan-left-full .day-item.active { /* remove active styling */
+}
+
+.create-plan-left-full .remove-day-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    margin-left: 0.5rem;
+}
+
+.create-plan-left-full .add-day-btn {
+    padding: 0.75rem 1.25rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.3s;
+    width: 100%;
+}
+    .days-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+.create-plan-left-full .add-day-btn:hover {
+    background-color: #218838;
+}
+
+/* RIGHT SIDE - 70% */
+.create-plan-right-full {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* top bar, canvas, bottom */
+    gap: 0.75rem;
+    max-height: 90vh;
+    overflow: hidden;
+    min-height: 80vh;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    width: 100%;
+}
+
+/* Right top bar */
+.days-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.plan-title-input {
+    flex: 1;
+    max-width: 300px;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-title-input:focus {
+    outline: none;
+    border-color: #2d89ef;
+    box-shadow: 0 0 0 3px rgba(45, 137, 239, 0.1);
+}
+
+.plan-title-input::placeholder {
+    color: #999;
+}
+
+.days-list-container.right { /* removed right list usage; keep empty to avoid side effects */
+}
+
+.day-item { /* removed right list usage */
+}
+
+.add-day-btn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+    width: auto;
+}
+
+/* Day Exercise Container - Large Card Style */
+.plan-canvas { /* middle area */
+    overflow: auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns = 25% width per day */
+    gap: 0.75rem;
+    align-content: start;
+    justify-items: stretch;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.day-exercise-container {
+    background-color: #f9fbff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 25vh;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    align-items: stretch; /* content starts at top, fills width */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.day-exercise-container.empty {
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    font-style: italic;
+}
+
+.day-header-large {
+    background: linear-gradient(135deg, #2d89ef 0%, #246bb3 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* space for delete button */
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.day-header-large:hover {
+    background: linear-gradient(135deg, #3d9fff 0%, #2d89ef 100%);
+}
+
+.remove-day-btn-large {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    margin-left: 0.5rem;
+    opacity: 0.9;
+}
+
+.remove-day-btn-large:hover {
+    opacity: 1;
+}
+
+.exercises-in-day {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto; /* scroll list if it grows */
+    max-height: calc(80vh - 12rem); /* Maksymalna wysokość minus header i padding */
+    flex: 1;
+}
+
+.exercise-in-day-card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exercise-in-day-info {
+    flex: 1;
+}
+
+.exercise-in-day-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.exercise-in-day-inputs {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.exercise-in-day-input {
+    padding: 0.3rem 0.5rem;
+    border: 1px solid #2d89ef;
+    border-radius: 4px;
+    text-align: center;
+    width: 60px;
+}
+
+.remove-ex-btn-large {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    margin-left: 0.5rem;
+    transition: 0.2s;
+}
+
+.remove-ex-btn-large:hover {
+    color: #c0392b;
+    transform: scale(1.2);
+}
+
+.add-exercise-to-day-btn {
+    padding: 0.75rem 1.25rem;
+    background-color: #2d89ef;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.add-exercise-to-day-btn:hover {
+    background-color: #3d9fff;
+}
+
+.save-plan-btn {
+    padding: 1rem 1.5rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.save-plan-btn:hover {
+    background-color: #218838;
+}
+
+.coach-buttons-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.coach-buttons-row .save-plan-btn,
+.coach-buttons-row .assign-plan-btn {
+    width: 50%;
+}
+
+.assign-plan-btn {
+    padding: 1rem 1.5rem;
+    background-color: #2d89ef;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.assign-plan-btn:hover {
+    background-color: #246bb3;
+}
+
+.plan-message {
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem;
+    background-color: rgba(45, 137, 239, 0.2);
+    border-radius: 6px;
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+    .create-plan-page {
+        grid-template-columns: 30% 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .create-plan-page {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .create-plan-left-full .exercise-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

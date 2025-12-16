@@ -85,6 +85,49 @@
 .button_to_generate_plan:hover {
   background-color: #1b5e9e;
 }
+
+/* Plan creation menu */
+.plan-creation-menu {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.plan-menu-dropdown {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background-color: #1e1e1e;
+  border: 1px solid #2d89ef;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  min-width: 180px;
+  overflow: hidden;
+}
+
+.menu-option {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #1e1e1e;
+  color: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #2d2d2d;
+}
+
+.menu-option:last-child {
+  border-bottom: none;
+}
+
+.menu-option:hover {
+  background-color: #2d89ef;
+}
+
 /* 3 obiekty w rzędzie */
 @media (max-width: 1200px) {
   .Container_for_window {

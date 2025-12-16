@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { api } from '../api/axios';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TrainingPlans = () => {
     const [plans, setPlans] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showMenu, setShowMenu] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         api.get('/training', {
@@ -36,7 +38,38 @@ const TrainingPlans = () => {
                     <p>No training plans found.</p>
                 )}
             </div>
-            <Link to="/generatePlan" className="button_to_generate_plan">+</Link>
+            
+            {/* Menu do tworzenia planów */}
+            <div className="plan-creation-menu">
+                <button 
+                    className="button_to_generate_plan"
+                    onClick={() => setShowMenu(!showMenu)}
+                >
+                    +
+                </button>
+                {showMenu && (
+                    <div className="plan-menu-dropdown">
+                        <button 
+                            className="menu-option"
+                            onClick={() => {
+                                navigate("/generate-plan");
+                                setShowMenu(false);
+                            }}
+                        >
+                            Wygeneruj plan
+                        </button>
+                        <button 
+                            className="menu-option"
+                            onClick={() => {
+                                navigate("/create-plan");
+                                setShowMenu(false);
+                            }}
+                        >
+                            Stwórz plan
+                        </button>
+                    </div>
+                )}
+            </div>
         </>
     );
 };

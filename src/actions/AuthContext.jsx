@@ -7,6 +7,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -14,10 +15,28 @@ export const AuthProvider = ({ children }) => {
         const fetchUser = async () => {
             try {
                 const res = await api.get('/security/status');
+                console.log("DEBUG - /security/status response:", res.data);
                 setIsLoggedIn(res.data.loggedIn);
+                if (res.data.loggedIn && res.data.user) {
+                    console.log("DEBUG - Setting user:", res.data.user);
+                    setUser(res.data.user);
+                } else if (res.data.loggedIn) {
+                    // Jeśli jesteśmy zalogowani ale nie ma danych użytkownika, spróbuj pobrać z innego endpointu
+                    console.log("DEBUG - Trying to fetch user data from /user/me");
+                    try {
+                        const userRes = await api.get('/user/me');
+                        console.log("DEBUG - /user/me response:", userRes.data);
+                        setUser(userRes.data);
+                    } catch (userErr) {
+                        console.log("DEBUG - Failed to fetch user data from /user/me:", userErr);
+                    }
+                } else {
+                    console.log("DEBUG - No user data in response or not logged in");
+                }
             } catch (e) {
                 console.error("Status check failed:", e);
                 setIsLoggedIn(false);
+                setUser(null);
             } finally {
                 setLoading(false);
             }
@@ -74,15 +93,18 @@ export const AuthProvider = ({ children }) => {
             console.error("Logout error:", e);
         }
         setIsLoggedIn(false);
+        setUser(null);
         navigate('/');
     };
 
     if (loading) return <div>Loading...</div>;
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+        <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+export { AuthContext };
