@@ -4,11 +4,14 @@ import "/src/style/navigation.css";
 import { useAuth } from "../actions/AuthContext.jsx";
 
 const NavBar = () => {
-    const { isLoggedIn, logout } = useAuth();
+    const { isLoggedIn, logout, user } = useAuth();
     const [isMenuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => setMenuOpen(!isMenuOpen);
     const closeMenu = () => setMenuOpen(false);
+
+    const isCoach = user?.role === 'ROLE_COACH';
+    const isAdmin = user?.role === 'ROLE_ADMIN';
 
 
     return (
@@ -20,7 +23,18 @@ const NavBar = () => {
                     <div className="bar" />
                 </div>
                 <div className="Toolbar_container_for_buttons Left-toolbar">
-                    <Link to="/articles" className="Toolbar_button" onClick={closeMenu}>Articles</Link>
+                    {isLoggedIn && (
+                        isAdmin ? (
+                            <Link to="/permissions" className="Toolbar_button" onClick={closeMenu}>Uprawnienia</Link>
+                        ) : isCoach ? (
+                            <Link to="/my-clients" className="Toolbar_button" onClick={closeMenu}>Moi Podopieczni</Link>
+                        ) : (
+                            <Link to="/coaches" className="Toolbar_button" onClick={closeMenu}>Oferty trenerów</Link>
+                        )
+                    )}
+                    {isLoggedIn && !isAdmin && (
+                        <Link to="/progress" className="Toolbar_button" onClick={closeMenu}>Postęp</Link>
+                    )}
                     {isLoggedIn && (
                         <Link to="/trainingPlans" className="Toolbar_button" onClick={closeMenu}>Training Plans</Link>
                     )}
@@ -47,7 +61,18 @@ const NavBar = () => {
             </nav>
             {/* Mobile Menu */}
             <div className={`mobile-menu ${isMenuOpen ? "open" : ""}`}>
-                <Link to="/articles" className="Toolbar_button" onClick={closeMenu}>Articles</Link>
+                {isLoggedIn && (
+                    isAdmin ? (
+                        <Link to="/permissions" className="Toolbar_button" onClick={closeMenu}>Uprawnienia</Link>
+                    ) : isCoach ? (
+                        <Link to="/my-clients" className="Toolbar_button" onClick={closeMenu}>Moi Podopieczni</Link>
+                    ) : (
+                        <Link to="/coaches" className="Toolbar_button" onClick={closeMenu}>Trenerzy</Link>
+                    )
+                )}
+                {isLoggedIn && !isAdmin && (
+                    <Link to="/progress" className="Toolbar_button" onClick={closeMenu}>Postęp</Link>
+                )}
                 {isLoggedIn && (
                     <Link to="/trainingPlans" className="Toolbar_button" onClick={closeMenu}>Training Plans</Link>
                 )}

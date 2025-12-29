@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { api } from "../api/axios.js";
+import { useAuth } from "../actions/AuthContext.jsx";
 import "/src/style/CreatePlanPage.css";
 
 const CreatePlanPage = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const location = useLocation();
+    const { user } = useAuth();
     
     // Debug - sprawdzamy co zawiera user
     console.log("DEBUG - user object:", user);
@@ -25,20 +27,11 @@ const CreatePlanPage = () => {
     const [seriesData, setSeriesData] = useState({});
     const [repsData, setRepsData] = useState({});
     const [planTitle, setPlanTitle] = useState("");
-    const [userEmail, setUserEmail] = useState("");
+    const [userEmail, setUserEmail] = useState(location.state?.userEmail || "");
     
 
     // Fetch catalog data on component mount
     useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await api.get("/users/me", { withCredentials: true });
-                setUser(response.data);
-            } catch (err) {
-                console.error("Błąd pobierania danych użytkownika:", err);
-            }
-        };
-        
         const fetchCatalog = async () => {
             try {
                 const templatesRes = await api.get("/catalog/exercise-templates", { withCredentials: true });
@@ -52,7 +45,6 @@ const CreatePlanPage = () => {
             }
         };
         
-        fetchUser();
         fetchCatalog();
     }, []);
 
@@ -189,21 +181,33 @@ const CreatePlanPage = () => {
                 title: planTitle.trim(),
                 userEmail: userEmail.trim(),
                 days: planDays.map(day => ({
-                    ...day,
+                    dayNumber: day.dayNumber,
                     exercises: day.exercises.map(exercise => ({
-                        ...exercise,
-                        series: seriesData[exercise.id] ? parseInt(seriesData[exercise.id]) : null,
+                        templateId: exercise.templateId,
+                        sets: seriesData[exercise.id] ? parseInt(seriesData[exercise.id]) : null,
                         reps: repsData[exercise.id] ? parseInt(repsData[exercise.id]) : null
                     }))
                 }))
             };
-            await api.post("/training/assign-plan", planData, { withCredentials: true });
-            console.log("Plan przypisany do użytkownika:", planData);
-            setMessage("Plan został przypisany do użytkownika!");
-            setTimeout(() => navigate('/trainingPlans'), 1500);
+            console.log("=== WYSYŁAM PLAN DO PRZYPISANIA ===");
+            console.log("Plan data:", JSON.stringify(planData, null, 2));
+            console.log("====================================");
+            
+            const response = await api.post("/training/assign-plan", planData, { withCredentials: true });
+            console.log("Odpowiedź z backendu:", response.data);
+                setMessage("Plan został przypisany do użytkownika!");
+                // Po wysłaniu planu wróć do panelu trenera, aby odświeżyć listy
+                setTimeout(() => navigate('/my-clients'), 1200);
         } catch (err) {
-            console.error("Błąd przypisywania planu:", err);
-            setMessage("Błąd podczas przypisywania planu do użytkownika.");
+            console.error("=== BŁĄD PRZYPISYWANIA PLANU ===");
+            console.error("Error:", err);
+            console.error("Response status:", err.response?.status);
+            console.error("Response data:", err.response?.data);
+            console.error("Error message:", err.message);
+            console.error("================================");
+            
+            const errorMsg = err.response?.data?.message || err.response?.data || err.message;
+            setMessage(`Błąd: ${errorMsg}`);
         }
     };
 

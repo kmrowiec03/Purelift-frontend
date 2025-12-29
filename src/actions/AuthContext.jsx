@@ -22,13 +22,13 @@ export const AuthProvider = ({ children }) => {
                     setUser(res.data.user);
                 } else if (res.data.loggedIn) {
                     // Jeśli jesteśmy zalogowani ale nie ma danych użytkownika, spróbuj pobrać z innego endpointu
-                    console.log("DEBUG - Trying to fetch user data from /user/me");
+                    console.log("DEBUG - Trying to fetch user data from /users/me");
                     try {
-                        const userRes = await api.get('/user/me');
-                        console.log("DEBUG - /user/me response:", userRes.data);
+                        const userRes = await api.get('/users/me');
+                        console.log("DEBUG - /users/me response:", userRes.data);
                         setUser(userRes.data);
                     } catch (userErr) {
-                        console.log("DEBUG - Failed to fetch user data from /user/me:", userErr);
+                        console.log("DEBUG - Failed to fetch user data from /users/me:", userErr);
                     }
                 } else {
                     console.log("DEBUG - No user data in response or not logged in");

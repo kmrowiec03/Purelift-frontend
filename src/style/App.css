@@ -1,6 +1,13 @@
+/* Główny wrapper dla wszystkich stron - zapobiega zachodzeniu pod navbar */
+.app-content {
+  padding-top: 70px; /* Wysokość navbara */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
 .Container_for_many_window{
   padding: 2% 0;
-  margin: 100px 5% 0;
+  margin: 30px 5% 0;
   width: 90%;
   height: auto;
   display: flex;
