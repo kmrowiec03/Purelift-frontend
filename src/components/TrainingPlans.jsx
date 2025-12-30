@@ -22,6 +22,13 @@ const TrainingPlans = () => {
             });
     }, []);
 
+    // Funkcja do losowego wyboru zdjęcia
+    const getRandomImage = () => {
+        const images = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg'];
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return `/src/assets/${images[randomIndex]}`;
+    };
+
     if (loading) return <p>Loading...</p>;
 
     return (
@@ -30,7 +37,7 @@ const TrainingPlans = () => {
                 {plans.length > 0 ? (
                     plans.map(plan => (
                         <Link to={`${plan.id}`} className="Container_for_window link" key={plan.id}>
-                            <img src="/src/assets/tlo.jpg" alt={`Image for ${plan.title}`} loading="lazy" />
+                            <img src={getRandomImage()} alt={`Image for ${plan.title}`} loading="lazy" />
                             <p className="text title_in_window">{plan.title}</p>
                         </Link>
                     ))

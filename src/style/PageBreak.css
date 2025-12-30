@@ -1,13 +1,16 @@
 .main-content {
-    background-size: cover;
-    height:100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e40af 0%, #1f2937 100%);
     width: 100vw;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
     flex-direction: row;
+    font-family: 'Inter', sans-serif;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .left-part{

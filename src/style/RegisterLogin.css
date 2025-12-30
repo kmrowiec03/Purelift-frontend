@@ -7,91 +7,181 @@
     --textAndBorderColor: #0162c8;
 }
 
-.Container_column{
-    width: 450px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(217, 217, 217, 0.9);
-    border-radius: 6%;
-    border: 2px black solid ;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);;
-
-}
-
-
-.form-section {/*kontener (div) z miejscem dla pola do logowania*/
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-    height: 60px;
-    position: relative;
-    overflow: hidden;
-    color: blue;
-
-}
-
-.form-input {/*pole input na wpisanie danych*/
-    font-size: 20px;
+.Container_column {
+    max-width: 450px;
     width: 100%;
-    height: 100%;
-    padding-top: 30px;
-    padding-left: 2px;
-    border:none;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 1.5rem 0;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+.form-input {
+    font-size: 1rem;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
     outline: none;
-    color: rgba(0, 0, 0, 0.548);
-    background: transparent;
-    border-bottom: 1px solid rgba(0, 0, 0,0.322);
+    color: #1f2937;
+    background: white;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-input:focus {
+    border-color: #1e40af;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
 }
 
 .input-label {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: -0.5rem;
+    left: 0.75rem;
+    background: white;
+    padding: 0 0.5rem;
     pointer-events: none;
+    transition: all 0.3s ease;
 }
 
-.input-label::after {
-    content: '';
-    position: absolute;
+.label-name {
+    color: #1e40af;
+    font-weight: 600;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Form logo styling */
+.form-logo {
+    width: 120px;
+    height: auto;
+    margin: 0 auto 2rem auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.form-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Button styling */
+.Confirm-button {
     width: 100%;
-    height: 3px;
-    background-image: linear-gradient(90deg, #0162c8, #55e7fc);
-    left: 0;
-    bottom: -1px;
-    border-radius: 25px;
-    transform: translateX(-100%);
-    transition: all .3s ease-in-out;
+    padding: 1rem 1.5rem;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(30, 64, 175, 0.3);
 }
 
-
-
-.form-input:focus+.input-label::after {/* przesuwanie*/
-    transform: translateX(0%);
+.Confirm-button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(30, 64, 175, 0.4);
 }
 
-.label-name {/*pole dynamicznie przesuwane*/
-    position: absolute;
-    bottom: 0;
-    transition: all .3s ease-in-out;
-    color: rgba(0, 0, 0, 0.644);
-
+.Confirm-button:active {
+    transform: translateY(0);
 }
 
-.form-input:focus +.input-label .label-name {
-    bottom: 35px;
-    font-size: 14px;
-    color: #0162c8;
-    font-weight: bold;
+/* Form message styling */
+.Container_column p {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.form-input:valid +.input-label .label-name
-{
-    bottom: 35px;
-    font-size: 14px;
-    color: #0162c8;
-    font-weight: bold;
+.Container_column p {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+/* Success message (can be added if needed) */
+.success-message {
+    background-color: #f0f9ff !important;
+    color: #0369a1 !important;
+    border: 1px solid #bae6fd !important;
+}
+
+/* Form title styling */
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .Container_column {
+        max-width: 100%;
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .form-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-section {
+        margin: 1rem 0;
+    }
+    
+    .form-input {
+        padding: 0.875rem;
+        font-size: 1rem;
+    }
+    
+    .Confirm-button {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Container_column {
+        padding: 1rem;
+    }
+    
+    .form-title {
+        font-size: 1.25rem;
+    }
 }

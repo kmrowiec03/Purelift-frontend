@@ -1,0 +1,285 @@
+.exercise-progress-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e40af 0%, #1f2937 100%);
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.exercise-progress-header {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.exercise-progress-container {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Lewa część - wykres */
+.chart-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.chart-section:hover {
+    transform: translateY(-5px);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 0.5rem;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.exercise-select,
+.weeks-select {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: white;
+    color: #1f2937;
+    transition: all 0.3s ease;
+}
+
+.exercise-select:focus,
+.weeks-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.weeks-select {
+    max-width: 140px;
+}
+
+.chart-container {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 1px solid #e5e7eb;
+}
+
+/* Prawa część - tabela */
+.weights-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.weights-section:hover {
+    transform: translateY(-5px);
+}
+
+.rep-filter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 2px solid #3b82f6;
+}
+
+.rep-filter label {
+    font-weight: 600;
+    color: #1f2937;
+    white-space: nowrap;
+}
+
+.rep-select {
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    color: #1f2937;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.rep-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.weights-table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 2px solid #3b82f6;
+    background: white;
+}
+
+.weights-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.weights-table th {
+    background: linear-gradient(135deg, #1e40af, #1f2937);
+    color: white;
+    padding: 1rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+}
+
+.weights-table th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.weights-table th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.weights-table td {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+    background: white;
+}
+
+.weights-table tr:hover {
+    background: #f1f5f9 !important;
+}
+
+.weights-table tr:last-child td {
+    border-bottom: none;
+}
+
+.exercise-name {
+    font-weight: 600;
+    color: #1f2937;
+    cursor: help;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.weight-value {
+    text-align: center;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.weight-value:not(:contains('-')) {
+    color: #1e40af;
+}
+
+/* Stan loading i error */
+.loading-message,
+.error-message,
+.no-data-message {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.loading-message {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 2px solid #3b82f6;
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 2px solid #ef4444;
+}
+
+.no-data-message {
+    background: #f3f4f6;
+    color: #1f2937;
+    border: 2px solid #6b7280;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .exercise-progress-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .exercise-progress-header {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .exercise-progress-page {
+        padding: 1rem;
+    }
+    
+    .chart-section,
+    .weights-section {
+        padding: 1.5rem;
+    }
+    
+    .chart-controls {
+        flex-direction: column;
+    }
+    
+    .rep-filter {
+        flex-direction: column;
+        align-items: start;
+        gap: 0.5rem;
+    }
+    
+    .weights-table {
+        font-size: 0.85rem;
+    }
+    
+    .weights-table th,
+    .weights-table td {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .exercise-progress-header {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .chart-section,
+    .weights-section {
+        padding: 1rem;
+    }
+}

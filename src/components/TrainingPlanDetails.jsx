@@ -225,13 +225,13 @@ const TrainingPlanDetails = () => {
         <div className="training-plan-details">
             <div className="details-header">
                 <h2 className="plan-title">Plan treningowy: {plan.title} {editMode && "(Edycja)"}</h2>
-                {editMode && <button className="apply-button" onClick={applyChanges}>Apply</button>}
+                {editMode && <button className="apply-button" onClick={applyChanges}>Zastosuj</button>}
                 <div className="menu-container">
                     <button className="menu-button" onClick={toggleMenu}>⋮</button>
                     {showMenu && (
                         <div className="menu-dropdown">
-                            <button className="menu-item" onClick={toggleEdit}>Edit</button>
-                            <button className="menu-item" onClick={handleDelete}>Delete</button>
+                            <button className="menu-item" onClick={toggleEdit}>Edytuj</button>
+                            <button className="menu-item" onClick={handleDelete}>Usuń</button>
                         </div>
                     )}
                 </div>

@@ -1,0 +1,272 @@
+.admin-permissions-page {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 2rem 0;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+}
+
+.admin-permissions-header {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-permissions-container {
+    padding: 2% 0;
+    margin: 30px 5% 0;
+    width: 90%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.admin-search-bar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.admin-search-bar:focus {
+    outline: none;
+    border-color: #2196f3;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.admin-search-bar::placeholder {
+    color: #90a4ae;
+}
+
+.admin-users-grid {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.admin-user-card {
+    flex: 1 1 calc(20% - 1.2em);
+    max-width: calc(20% - 1.2em);
+    min-width: 280px;
+    height: auto;
+    background: white;
+    text-align: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #333;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.admin-user-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+.admin-user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 auto 1rem auto;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.admin-user-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+}
+
+.admin-user-email {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0 0 1rem 0;
+    text-align: center;
+    word-break: break-word;
+}
+
+.admin-user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.admin-user-plans {
+    font-size: 0.8rem;
+    color: #2196f3;
+    font-weight: 600;
+}
+
+.admin-user-status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+}
+
+.admin-user-status.active {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.admin-user-status.inactive {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.admin-user-status.locked {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.admin-role-section {
+    margin-top: 0.5rem;
+}
+
+.admin-role-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.admin-role-select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: white;
+    color: #333;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-role-select:focus {
+    outline: none;
+    border-color: #2196f3;
+}
+
+.admin-role-select:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.admin-loading-message,
+.admin-error-message,
+.admin-no-users-message {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-loading-message {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.admin-error-message {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.admin-no-users-message {
+    background: #f3e5f5;
+    color: #6a1b9a;
+}
+
+/* Responsive design */
+/* 3 obiekty w rzędzie */
+@media (max-width: 1200px) {
+    .admin-user-card {
+        flex: 1 1 calc(30% - 1em);
+        max-width: calc(30% - 1em);
+        min-width: 250px;
+    }
+}
+
+/* 2 obiekty w rzędzie */
+@media (max-width: 800px) {
+    .admin-permissions-page {
+        padding: 1rem 0;
+    }
+    
+    .admin-permissions-header {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .admin-user-card {
+        flex: 1 1 calc(45% - 0.75em);
+        max-width: calc(45% - 0.75em);
+        min-width: 200px;
+        padding: 1.25rem;
+    }
+    
+    .admin-search-bar {
+        padding: 0.75rem;
+        margin: 0 auto 1.5rem auto;
+    }
+    
+    .admin-user-info {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}
+
+/* 1 obiekt w rzędzie */
+@media (max-width: 500px) {
+    .admin-permissions-header {
+        font-size: 1.5rem;
+    }
+    
+    .admin-user-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        min-width: auto;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    .admin-user-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}

@@ -45,6 +45,7 @@ const Register = () => {
     return (
         <div className="main-content">
             <div className="Container_column">
+                <img src="/src/assets/logo.png" alt="Purelift Logo" className="form-logo" />
                 <form onSubmit={handleRegister}>
                     <div className="form-section">
                         <input

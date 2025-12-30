@@ -23,20 +23,23 @@ const NavBar = () => {
                     <div className="bar" />
                 </div>
                 <div className="Toolbar_container_for_buttons Left-toolbar">
+                    {/* Linki dla wszystkich zalogowanych */}
                     {isLoggedIn && (
-                        isAdmin ? (
-                            <Link to="/permissions" className="Toolbar_button" onClick={closeMenu}>Uprawnienia</Link>
-                        ) : isCoach ? (
-                            <Link to="/my-clients" className="Toolbar_button" onClick={closeMenu}>Moi Podopieczni</Link>
-                        ) : (
-                            <Link to="/coaches" className="Toolbar_button" onClick={closeMenu}>Oferty trenerów</Link>
-                        )
+                        <Link to="/trainingPlans" className="Toolbar_button" onClick={closeMenu}>Plany Treningowe</Link>
                     )}
-                    {isLoggedIn && !isAdmin && (
+                    {isLoggedIn && (
                         <Link to="/progress" className="Toolbar_button" onClick={closeMenu}>Postęp</Link>
                     )}
-                    {isLoggedIn && (
-                        <Link to="/trainingPlans" className="Toolbar_button" onClick={closeMenu}>Training Plans</Link>
+                    
+                    {/* Linki specyficzne dla ról */}
+                    {isLoggedIn && isAdmin && (
+                        <Link to="/permissions" className="Toolbar_button" onClick={closeMenu}>Uprawnienia</Link>
+                    )}
+                    {isLoggedIn && isCoach && (
+                        <Link to="/my-clients" className="Toolbar_button" onClick={closeMenu}>Moi Podopieczni</Link>
+                    )}
+                    {isLoggedIn && !isAdmin && !isCoach && (
+                        <Link to="/coaches" className="Toolbar_button" onClick={closeMenu}>Oferty trenerów</Link>
                     )}
                 </div>
 
@@ -47,13 +50,13 @@ const NavBar = () => {
                 <div className="Toolbar_container_for_buttons Right-toolbar">
                     {!isLoggedIn ? (
                         <>
-                            <Link to="/login" className="Toolbar_button" onClick={closeMenu}>Sign in</Link>
-                            <Link to="/register" className="Toolbar_button" onClick={closeMenu}>Register</Link>
+                            <Link to="/login" className="Toolbar_button" onClick={closeMenu}>Zaloguj się</Link>
+                            <Link to="/register" className="Toolbar_button" onClick={closeMenu}>Zarejestruj się</Link>
                         </>
                     ) : (
                         <>
-                            <Link to="/profile" className="Toolbar_button" onClick={closeMenu}>Profile</Link>
-                            <Link to="#" onClick={() => { logout(); closeMenu(); }} className="Toolbar_button">Logout</Link>
+                            <Link to="/profile" className="Toolbar_button" onClick={closeMenu}>Profil</Link>
+                            <Link to="#" onClick={() => { logout(); closeMenu(); }} className="Toolbar_button">Wyloguj się</Link>
                         </>
                     )}
                 </div>
@@ -61,30 +64,33 @@ const NavBar = () => {
             </nav>
             {/* Mobile Menu */}
             <div className={`mobile-menu ${isMenuOpen ? "open" : ""}`}>
+                {/* Linki dla wszystkich zalogowanych */}
                 {isLoggedIn && (
-                    isAdmin ? (
-                        <Link to="/permissions" className="Toolbar_button" onClick={closeMenu}>Uprawnienia</Link>
-                    ) : isCoach ? (
-                        <Link to="/my-clients" className="Toolbar_button" onClick={closeMenu}>Moi Podopieczni</Link>
-                    ) : (
-                        <Link to="/coaches" className="Toolbar_button" onClick={closeMenu}>Trenerzy</Link>
-                    )
+                    <Link to="/trainingPlans" className="Toolbar_button" onClick={closeMenu}>Plany Treningowe</Link>
                 )}
-                {isLoggedIn && !isAdmin && (
+                {isLoggedIn && (
                     <Link to="/progress" className="Toolbar_button" onClick={closeMenu}>Postęp</Link>
                 )}
-                {isLoggedIn && (
-                    <Link to="/trainingPlans" className="Toolbar_button" onClick={closeMenu}>Training Plans</Link>
+                
+                {/* Linki specyficzne dla ról */}
+                {isLoggedIn && isAdmin && (
+                    <Link to="/permissions" className="Toolbar_button" onClick={closeMenu}>Uprawnienia</Link>
+                )}
+                {isLoggedIn && isCoach && (
+                    <Link to="/my-clients" className="Toolbar_button" onClick={closeMenu}>Moi Podopieczni</Link>
+                )}
+                {isLoggedIn && !isAdmin && !isCoach && (
+                    <Link to="/coaches" className="Toolbar_button" onClick={closeMenu}>Trenerzy</Link>
                 )}
                 {!isLoggedIn ? (
                     <>
-                        <Link to="/login" className="Toolbar_button" onClick={closeMenu}>Sign in</Link>
-                        <Link to="/register" className="Toolbar_button" onClick={closeMenu}>Register</Link>
+                        <Link to="/login" className="Toolbar_button" onClick={closeMenu}>Zaloguj się</Link>
+                        <Link to="/register" className="Toolbar_button" onClick={closeMenu}>Zarejestruj się</Link>
                     </>
                 ) : (
                     <>
-                        <Link to="/profile" className="Toolbar_button" onClick={closeMenu}>Profile</Link>
-                        <Link to="#" onClick={() => { logout(); closeMenu(); }} className="Toolbar_button">Logout</Link>
+                        <Link to="/profile" className="Toolbar_button" onClick={closeMenu}>Profil</Link>
+                        <Link to="#" onClick={() => { logout(); closeMenu(); }} className="Toolbar_button">Wyloguj się</Link>
                     </>
                 )}
             </div>
